@@ -23,7 +23,7 @@ const Navigation: React.FC = () => {
                     <a href="#" className="block w-full h-full rounded-full overflow-hidden">
                         {/* Replace the src below with your actual logo image URL */}
                         <img 
-                            src="https://t3.ftcdn.net/jpg/11/99/27/32/360_F_1199273267_rh54i5McYeAg5cImGhkDbkz94y4qYKty.jpg" 
+                            src="https://drive.google.com/file/d/12aRng8sA1BhA9dg9RZLMkCJ9eOKJSrHp/view?usp=drive_link" 
                             alt="Logo" 
                             className="w-full h-full object-cover" 
                         />
