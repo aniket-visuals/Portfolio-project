@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const VIDEOS = [
-            "c4xT5L6v7rU",
-            "c4xT5L6v7rU", 
-            "c4xT5L6v7rU",
-            "c4xT5L6v7rU", 
-            "c4xT5L6v7rU",
+            "FV-ZXEiSnnY",
+            "7az8YM4ctZs", 
+            "UnFHAvSdYgg",
+            "F1CLBnEOFrA", 
+            "uPm4uIP1jCU",
             "c4xT5L6v7rU",
             "c4xT5L6v7rU"
 ];
