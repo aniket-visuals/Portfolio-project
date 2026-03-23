@@ -1,4 +1,5 @@
 import React from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import Showreel from './components/Showreel';
@@ -51,6 +52,7 @@ const App: React.FC = () => {
             <ScrollReveal>
                 <Footer />
             </ScrollReveal>
+            <Analytics />
         </div>
     );
 };
