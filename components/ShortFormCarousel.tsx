@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const VIDEOS = [
-            "F1CLBnEOFrA",
+            "DDAI_YKo14I",
             "UnFHAvSdYgg", 
             "FV-ZXEiSnnY",
             "DHxGSlToINs", 
             "uat8lyrZFhQ",
-            "7az8YM4ctZs",
-            "uPm4uIP1jCU"
+            "yYtNNoXwPss",
+            "oFRYWN8qkw4"
 ];
 
 const DISPLAY_ITEMS = [...VIDEOS, ...VIDEOS, ...VIDEOS];

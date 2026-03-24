@@ -7,7 +7,7 @@ const LongForm: React.FC = () => {
             videoId: "Kp4lS6bc0j4",
         },
         {
-            videoId: "bX7Qd-QNql8",
+            videoId: "wqhIoZiEGWo",
         },
         {
             videoId: "5bY40eHEHDA",
