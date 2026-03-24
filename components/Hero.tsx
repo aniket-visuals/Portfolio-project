@@ -47,9 +47,9 @@ throw new Error('Function not implemented.');
 
                 <div className="flex flex-col items-center gap-2 opacity-0 animate-pop-elastic" style={{ animationDelay: '0.4s' }}>
                     <div className="flex -space-x-2">
-                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" className="w-8 h-8 rounded-full border border-dark" alt="Client" />
-                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Aneka" className="w-8 h-8 rounded-full border border-dark" alt="Client" />
-                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mark" className="w-8 h-8 rounded-full border border-dark" alt="Client" />
+                        <img src="https://res.cloudinary.com/df5rgwdng/image/upload/v1774390101/high-1774389960_ehpvh9.jpg" className="w-8 h-8 rounded-full border border-dark" alt="Client" />
+                        <img src="https://res.cloudinary.com/df5rgwdng/image/upload/v1774390325/479499375_622414950386874_6207510539453852578_n_ru9tnj.jpg" className="w-8 h-8 rounded-full border border-dark" alt="Client" />
+                        <img src="https://res.cloudinary.com/df5rgwdng/image/upload/v1774393227/BzK24ZikXCqyabOzlDt8R9Q5rDA_rohyw4.webp" className="w-8 h-8 rounded-full border border-dark" alt="Client" />
                     </div>
                     <div className="flex items-center gap-1.5 text-xs text-gray-400">
                         <div className="flex text-primary">
@@ -57,7 +57,7 @@ throw new Error('Function not implemented.');
                                 <Star key={i} className="w-3 h-3 fill-current" />
                             ))}
                         </div>
-                        <span>100+ Happy Customers</span>
+                        <span>50+ Happy Customers</span>
                     </div>
                 </div>
             </div>

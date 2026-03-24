@@ -2,12 +2,12 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const TESTIMONIALS = [
-    { quote: "Aniket transformed my raw footage into a masterpiece. The pacing was absolutely perfect", author: "Sarah Jenkins", role: "YouTuber" },
-    { quote: "Fast delivery and incredible attention to detail. The color grading took our ad to the next level.", author: "Mark D.", role: "Agency Owner" },
-    { quote: "Highly professional. He understands the vision without needing constant supervision.", author: "TechFlow Media", role: "Media Company" },
-    { quote: "The sound design was immersive. Truly cinematic quality that elevated our brand storytelling.", author: "Alex Rivera", role: "Director" },
-    { quote: "Delivered ahead of schedule. Best editor we've worked with for high-retention content.", author: "CreativePulse", role: "Agency" },
-    { quote: "My engagement went up 200% after these edits. Insane ROI on just the first video.", author: "Jordan Lee", role: "Content Creator" }
+    { quote: "Honestly, it was a really great experience. I received every edit on time, and the editing skills he possesses are excellent.", author: "Smith Roy", role: "Agency Owner", image: "https://res.cloudinary.com/df5rgwdng/image/upload/v1774390466/cropped_circle_image_ef9hgz.png" },
+    { quote: "Loved the edit—so smooth and well-crafted! The attention to detail was amazing, and the quick turnaround made it even better. Great job!.", author: "Lars", role: "Youtube Entrepreneur", image: "https://res.cloudinary.com/df5rgwdng/image/upload/v1774393227/Ot4ZqEfYu9Zq4jV4JtSjGVRMtlQ_rc35l3.avif" },
+    { quote: "Incredible work! This is exactly what I was looking for. The quality is insane, and the fast delivery makes it even more impressive. Amazing job, mate!", author: "Carlo Smolders", role: "Youtuber & Creator", image: "https://res.cloudinary.com/df5rgwdng/image/upload/v1774393227/BzK24ZikXCqyabOzlDt8R9Q5rDA_rohyw4.webp" },
+    { quote: "The video was edited exceptionally well, with great attention to detail. I’m also impressed by the fast turnaround—fantastic work!", author: "Rayan", role: "Channel Manager", image: "https://res.cloudinary.com/df5rgwdng/image/upload/v1774393227/faggCnasOmNAlEJrLlZ3YysFNU_vfosyt.webp" },
+    { quote: "You really delivered on this one—super impressive work! The smooth animations and well-timed keyframes look fantastic.", author: "Yash", role: "Youtuber & Channel owner", image: "https://res.cloudinary.com/df5rgwdng/image/upload/v1774393227/EEtfmg54ZFMMO7x2dNCrqf88_psm2mi.webp" },
+    { quote: "My engagement went up 200% after these edits. Insane ROI on just the first video.", author: "Jordan Lee", role: "Content Creator", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face" }
 ];
 
 const DISPLAY_ITEMS = [...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS];
@@ -48,9 +48,12 @@ const Testimonials: React.FC = () => {
                 }
             }
 
-            item.style.transform = `scale(${scale})`;
+            item.style.transform = `scale(${scale}) translateZ(0)`;
             item.style.zIndex = zIndex.toString();
             item.style.opacity = opacity.toString();
+            item.style.backfaceVisibility = 'hidden';
+            item.style.WebkitBackfaceVisibility = 'hidden';
+            item.style.outline = '1px solid transparent'; // Force anti-aliasing
             
             if (isFocused) {
                 item.style.borderColor = 'rgba(252, 182, 50, 0.5)';
@@ -83,7 +86,8 @@ const Testimonials: React.FC = () => {
         trackRef.current.style.transform = `translateX(${newTranslateX}px)`;
     }, []);
 
-    const handleTransitionEnd = useCallback(() => {
+    const handleTransitionEnd = useCallback((e?: React.TransitionEvent) => {
+        if (e && e.target !== trackRef.current) return;
         isAnimatingRef.current = false;
 
         let snappedIndex = currentIndexRef.current;
@@ -202,16 +206,20 @@ const Testimonials: React.FC = () => {
                             {DISPLAY_ITEMS.map((t, i) => (
                                 <div 
                                     key={i} 
-                                    className="flex-shrink-0 w-[250px] md:w-[300px] -ml-6 p-6 glass-panel rounded-2xl relative group origin-center border border-white/5 flex flex-col justify-between min-h-[200px]"
+                                    className="flex-shrink-0 w-[250px] md:w-[300px] -ml-6 p-6 glass-panel rounded-2xl relative group origin-center border border-white/5 flex flex-col justify-between min-h-[200px] will-change-transform overflow-hidden"
                                 >
                                     <div>
                                         <div className="flex text-primary mb-3 text-[10px] tracking-widest">★★★★★</div>
                                         <p className="text-gray-200 italic mb-6 text-xs leading-relaxed font-light">"{t.quote}"</p>
                                     </div>
                                     <div className="flex items-center gap-3 mt-auto border-t border-white/5 pt-4">
-                                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-700 to-black flex items-center justify-center text-[10px] font-bold text-gray-400 border border-white/10">
-                                            {t.author.charAt(0)}
-                                        </div>
+                                        {t.image ? (
+                                            <img src={t.image} alt={t.author} className="w-8 h-8 rounded-full border border-white/10 object-cover" referrerPolicy="no-referrer" />
+                                        ) : (
+                                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-700 to-black flex items-center justify-center text-[10px] font-bold text-gray-400 border border-white/10">
+                                                {t.author.charAt(0)}
+                                            </div>
+                                        )}
                                         <div>
                                             <p className="font-bold text-white text-xs">{t.author}</p>
                                             <p className="text-[9px] text-primary uppercase tracking-wider">{t.role}</p>
