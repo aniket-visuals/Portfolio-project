@@ -14,7 +14,7 @@ throw new Error('Function not implemented.');
 
             <div className="relative z-10 text-center px-4 w-full max-w-7xl mx-auto">
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 mb-10 backdrop-blur-sm opacity-0 animate-slide-up-elastic">
-                    <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-blink"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-blink shadow-[0_0_8px_2px_rgba(34,197,94,0.6)]"></span>
                     <span className="text-[10px] font-bold tracking-widest text-gray-300 uppercase">3 Spots Available</span>
                 </div>
 
@@ -29,17 +29,17 @@ throw new Error('Function not implemented.');
                     Clean edits that turn views into clients. High-impact storytelling for creators and brands.
                 </p>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 opacity-0 animate-slide-up-elastic" style={{ animationDelay: '0.3s' }}>
+                <div className="flex flex-row items-center justify-center gap-4 mb-12 opacity-0 animate-slide-up-elastic" style={{ animationDelay: '0.3s' }}>
                     <a 
                         href="https://calendly.com/ankit121345123/30min?month=2025-12" 
-                        className="px-6 py-3 rounded-full text-sm font-bold w-full sm:w-auto hover-trigger btn-liquid-primary"
+                        className="px-6 py-3 rounded-full text-sm font-bold w-auto hover-trigger btn-liquid-primary"
                     >
                         Book a Call
                     </a>
                     <a 
                         href="#showreel" 
                         onClick={(e) => handleScroll(e, 'contact')}
-                        className="px-6 py-3 rounded-full text-sm font-bold w-full sm:w-auto hover-trigger btn-liquid-secondary"
+                        className="px-6 py-3 rounded-full text-sm font-bold w-auto hover-trigger btn-liquid-secondary"
                     >
                         See Portfolio
                     </a>

@@ -37,11 +37,9 @@ const Showreel: React.FC = () => {
                     <div className="flex flex-wrap justify-center gap-2 text-[8px] font-bold tracking-widest text-primary uppercase">
                         <span>Video Editing</span>
                         <span className="text-gray-600">|</span>
-                        <span>Motion Designing</span>
+                        <span>Motion Graphics</span>
                         <span className="text-gray-600">|</span>
-                        <span>Storytelling</span>
-                        <span className="text-gray-600">|</span>
-                        <span>Colourgrading</span>
+                        <span>Saas Video</span>
                     </div>
                 </div>
             </div>

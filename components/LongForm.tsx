@@ -10,16 +10,16 @@ const LongForm: React.FC = () => {
             videoId: "wqhIoZiEGWo",
         },
         {
+            videoId: "BsHi-N_Gamw",
+        },
+        {
+            videoId: "tZSaGhFoEXc",
+        },
+        {
             videoId: "5bY40eHEHDA",
         },
         {
             videoId: "BWJ0rmvbFqk",
-        },
-        {
-            videoId: "Wq75suUAEEo",
-        },
-        {
-            videoId: "uBb9J_craPA",
         }
         
         

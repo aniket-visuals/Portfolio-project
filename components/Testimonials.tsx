@@ -7,7 +7,7 @@ const TESTIMONIALS = [
     { quote: "Incredible work! This is exactly what I was looking for. The quality is insane, and the fast delivery makes it even more impressive. Amazing job, mate!", author: "Carlo Smolders", role: "Youtuber & Creator", image: "https://res.cloudinary.com/df5rgwdng/image/upload/v1774393227/BzK24ZikXCqyabOzlDt8R9Q5rDA_rohyw4.webp" },
     { quote: "The video was edited exceptionally well, with great attention to detail. I’m also impressed by the fast turnaround—fantastic work!", author: "Rayan", role: "Channel Manager", image: "https://res.cloudinary.com/df5rgwdng/image/upload/v1774393227/faggCnasOmNAlEJrLlZ3YysFNU_vfosyt.webp" },
     { quote: "You really delivered on this one—super impressive work! The smooth animations and well-timed keyframes look fantastic.", author: "Yash", role: "Youtuber & Channel owner", image: "https://res.cloudinary.com/df5rgwdng/image/upload/v1774393227/EEtfmg54ZFMMO7x2dNCrqf88_psm2mi.webp" },
-    { quote: "My engagement went up 200% after these edits. Insane ROI on just the first video.", author: "Jordan Lee", role: "Content Creator", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face" }
+    { quote: "Excellent work. He made the edits exactly as I expected and delivered everything on time. Really happy with the final result.", author: "Jordan Lee", role: "Content Creator", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face" }
 ];
 
 const DISPLAY_ITEMS = [...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS];
