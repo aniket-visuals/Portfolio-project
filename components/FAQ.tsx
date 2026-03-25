@@ -3,7 +3,7 @@ import { Plus } from 'lucide-react';
 
 const FAQ: React.FC = () => {
     const FAQS = [
-        { q: "Do you guarantee results?", a: "Yes! I work until you are completely satisfied with the narrative and flow of the video." },
+        { q: "Why should I choose you as my editor?", a: "I maintain clean, high-quality edits and deliver projects before the deadline while ensuring the final video matches your expectations." },
         { q: "How fast I'll get my videos?", a: "Typical turnaround time is 24-48 hours for short form and 3-5 days for long form." },
         { q: "Can I request specific themes?", a: "Absolutely. Just share a reference link or describe the vibe in the 'Brief' stage." },
         { q: "Do you offer any FREE revisions?", a: "Yes, I offer up to 2 rounds of free revisions to ensure the edit aligns with your vision." }
@@ -23,11 +23,11 @@ const FAQ: React.FC = () => {
                         <img 
                             src="https://image2url.com/r2/default/gifs/1767355985191-16ca977e-4828-4c09-8f43-40381739b639.gif" 
                             alt="Satisfaction Guaranteed" 
-                            className="absolute inset-0 w-fill h-fill object-cover transform group-hover:scale-105 transition-transform duration-700"
+                            className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                         <div className="relative z-10 mt-auto pb-6 text-center">
-                            <h3 className="text-2xl font-bold leading-tight drop-shadow-lg text-white">Satisfaction Guaranteed</h3>
+                            <h3 className="text-2xl font-bold leading-tight drop-shadow-lg text-white">Clean & Quality Edits</h3>
                         </div>
                     </div>
                 </div>
