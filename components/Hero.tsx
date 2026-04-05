@@ -15,7 +15,7 @@ throw new Error('Function not implemented.');
             <div className="relative z-10 text-center px-4 w-full max-w-7xl mx-auto">
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 mb-10 backdrop-blur-sm opacity-0 animate-slide-up-elastic">
                     <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-blink shadow-[0_0_8px_2px_rgba(34,197,94,0.6)]"></span>
-                    <span className="text-[10px] font-bold tracking-widest text-gray-300 uppercase">3 Spots Available</span>
+                    <span className="text-[10px] font-bold tracking-widest text-gray-300 uppercase">Open to work</span>
                 </div>
 
                 <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-8 leading-tight opacity-0 animate-slide-up-elastic" style={{ animationDelay: '0.1s' }}>
