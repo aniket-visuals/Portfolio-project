@@ -22,15 +22,14 @@ const Showreel: React.FC = () => {
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 >
-                    <iframe 
-                        className="w-full h-full" 
+                    <video 
+                        className="w-full h-full object-cover" 
                         src="https://res.cloudinary.com/df5rgwdng/video/upload/q_auto/f_auto/v1776586624/Final_with_song_snk1yv.mov" 
                         title="Showreel" 
-                        frameBorder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        allowFullScreen
+                        controls
+                        playsInline
                     >
-                    </iframe>
+                    </video>
                 </div>
 
                 <div className="flex justify-center mt-2">
