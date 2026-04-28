@@ -28,6 +28,10 @@ const Showreel: React.FC = () => {
                         title="Showreel" 
                         controls
                         playsInline
+                        loop
+                        poster="https://res.cloudinary.com/df5rgwdng/image/upload/v1777381527/Screenshot_2026-04-28_183440_obu1sw.png"
+                        disablePictureInPicture
+                        controlsList="nodownload nofullscreen noplaybackrate"
                     >
                     </video>
                 </div>

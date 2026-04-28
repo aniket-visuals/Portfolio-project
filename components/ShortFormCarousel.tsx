@@ -2,13 +2,34 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const VIDEOS = [
-            "DDAI_YKo14I",
-            "UnFHAvSdYgg", 
-            "FV-ZXEiSnnY",
-            "DHxGSlToINs", 
-            "uat8lyrZFhQ",
-            "yYtNNoXwPss",
-            "oFRYWN8qkw4"
+    {
+        src: "https://res.cloudinary.com/df5rgwdng/video/upload/q_auto/f_auto/v1776639760/Final_Reel_w3nvln.mov",
+        poster: "https://res.cloudinary.com/df5rgwdng/image/upload/q_auto/f_auto/v1776641886/Untitled_design_2_bs7erb.png"
+    },
+    {
+        src: "https://res.cloudinary.com/df5rgwdng/video/upload/v1777373390/new_reel_complete_nndljp.mp4",
+        poster: "https://res.cloudinary.com/df5rgwdng/image/upload/v1777380935/3_m9sswm.jpg"
+    },
+    {
+        src: "https://res.cloudinary.com/df5rgwdng/video/upload/v1777372859/4k30fpsdd_z9kuho.mp4",
+        poster: "https://res.cloudinary.com/df5rgwdng/image/upload/v1777379880/1_tzpy07.jpg"
+    },
+    {
+        src: "https://res.cloudinary.com/df5rgwdng/video/upload/v1777380889/Day_10_v3_mzaoyp.mp4",
+        poster: "https://res.cloudinary.com/df5rgwdng/image/upload/v1777380042/2_zurad6.jpg"
+    },
+    {
+        src: "https://res.cloudinary.com/df5rgwdng/video/upload/q_auto/f_auto/v1776637328/Calm_River_20_Apr_BUnv_in1tfw.mp4",
+        poster: "https://res.cloudinary.com/df5rgwdng/image/upload/q_auto/f_auto/v1776641302/Calendly_dypzdw.png"
+    },
+    {
+        src: "https://res.cloudinary.com/df5rgwdng/video/upload/q_auto/f_auto/v1776639271/Calm_River_20_Apr_15km_tglkaj.mp4",
+        poster: "https://res.cloudinary.com/df5rgwdng/image/upload/q_auto/f_auto/v1776641628/Untitled_design_iq66su.png"
+    },
+    {
+        src: "https://res.cloudinary.com/df5rgwdng/video/upload/q_auto/f_auto/v1776639696/nov_1st_kdsol2.mov",
+        poster: "https://res.cloudinary.com/df5rgwdng/image/upload/q_auto/f_auto/v1776641766/Untitled_design_1_s3aqsf.png"
+    }
 ];
 
 const DISPLAY_ITEMS = [...VIDEOS, ...VIDEOS, ...VIDEOS];
@@ -36,7 +57,7 @@ const ShortFormCarousel: React.FC = () => {
             const itemCenter = itemRect.left + itemRect.width / 2;
             const dist = Math.abs(containerCenter - itemCenter);
             const overlay = item.querySelector('.overlay-dim') as HTMLElement;
-            const iframe = item.querySelector('iframe') as HTMLElement;
+            const media = item.querySelector('video') as HTMLElement;
 
             let scale = 0.85;
             let zIndex = 0;
@@ -61,11 +82,11 @@ const ShortFormCarousel: React.FC = () => {
             if (isFocused) {
                 item.style.borderColor = 'rgba(252, 182, 50, 0.5)';
                 item.style.boxShadow = '0 10px 40px rgba(0,0,0,0.5)';
-                if (iframe) iframe.style.pointerEvents = 'auto';
+                if (media) media.style.pointerEvents = 'auto';
             } else {
                 item.style.borderColor = 'rgba(255, 255, 255, 0.05)';
                 item.style.boxShadow = 'none';
-                if (iframe) iframe.style.pointerEvents = 'none';
+                if (media) media.style.pointerEvents = 'none';
             }
 
             if (overlay) {
@@ -215,17 +236,21 @@ const ShortFormCarousel: React.FC = () => {
                         onTransitionEnd={handleTransitionEnd}
                         className="flex items-center will-change-transform"
                     >
-                        {DISPLAY_ITEMS.map((videoId, i) => (
+                        {DISPLAY_ITEMS.map((video, i) => (
                             <div 
                                 key={i} 
                                 className="flex-shrink-0 w-[180px] md:w-[200px] -ml-12 aspect-[9/16] glass-panel rounded-2xl overflow-hidden relative group origin-center border border-white/5"
                             >
-                                <iframe
-                                    src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&controls=0&playsinline=1&loop=1&playlist=${videoId}`}
-                                    className="w-full h-full object-cover pointer-events-none"
+                                <video
+                                    src={video.src}
+                                    className="w-full h-full object-cover"
                                     title={`Short ${i}`}
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
+                                    playsInline
+                                    controls
+                                    loop
+                                    poster={video.poster}
+                                    disablePictureInPicture
+                                    controlsList="nodownload nofullscreen noplaybackrate"
                                 />
                                 <div className="absolute inset-0 bg-black/60 pointer-events-none overlay-dim transition-colors duration-300"></div>
                             </div>
