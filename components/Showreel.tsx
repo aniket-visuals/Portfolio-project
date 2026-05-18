@@ -24,7 +24,7 @@ const Showreel: React.FC = () => {
                 >
                     <video 
                         className="w-full h-full object-cover" 
-                        src="https://res.cloudinary.com/df5rgwdng/video/upload/q_auto/f_auto/v1776586624/Final_with_song_snk1yv.mov" 
+                        src="https://res.cloudinary.com/df5rgwdng/video/upload/v1779121920/Day_14_l26n53.mp4" 
                         title="Showreel" 
                         controls
                         playsInline

@@ -4,13 +4,13 @@ import { ArrowRight } from 'lucide-react';
 const LongForm: React.FC = () => {
     const ITEMS = [
         {
+            videoId: "6AeKDHvQLrM",
+        },
+        {
             videoId: "lch4UC95OYU",
         },
         {
             videoId: "Kp4lS6bc0j4",
-        },
-        {
-            videoId: "wqhIoZiEGWo",
         },
         {
             videoId: "BsHi-N_Gamw",
