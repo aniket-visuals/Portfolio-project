@@ -25,11 +25,11 @@ const App: React.FC = () => {
                 </ScrollReveal>
 
                 <ScrollReveal>
-                    <SaasExplainer />
+                    <LongForm />
                 </ScrollReveal>
 
                 <ScrollReveal>
-                    <LongForm />
+                    <SaasExplainer />
                 </ScrollReveal>
 
                 <ScrollReveal>
