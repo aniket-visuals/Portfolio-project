@@ -41,11 +41,13 @@ const Showreel: React.FC = () => {
                     >
                     </video>
                     
+                    <div 
+                        className="absolute inset-x-0 top-0 h-[75%] cursor-pointer z-10"
+                        onClick={togglePlay}
+                    />
+                    
                     {!isPlaying && (
-                        <div 
-                            className="absolute inset-0 flex items-center justify-center bg-black/40 cursor-pointer transition-opacity duration-300"
-                            onClick={togglePlay}
-                        >
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/40 pointer-events-none transition-opacity duration-300 z-20">
                             <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center pl-1 shadow-[0_0_30px_rgba(252,182,50,0.5)] transform group-hover:scale-110 transition-transform duration-300">
                                 <Play className="w-8 h-8 text-black fill-current" />
                             </div>

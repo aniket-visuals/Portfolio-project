@@ -4,6 +4,7 @@ import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import Showreel from './components/Showreel';
 import SaasExplainer from './components/SaasExplainer';
+import ShortForm from './components/ShortForm';
 import LongForm from './components/LongForm';
 import Process from './components/Process';
 import Testimonials from './components/Testimonials';
@@ -30,6 +31,10 @@ const App: React.FC = () => {
 
                 <ScrollReveal>
                     <SaasExplainer />
+                </ScrollReveal>
+
+                <ScrollReveal>
+                    <ShortForm />
                 </ScrollReveal>
 
                 <ScrollReveal>
