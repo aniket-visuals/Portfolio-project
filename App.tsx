@@ -3,7 +3,7 @@ import { Analytics } from '@vercel/analytics/react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import Showreel from './components/Showreel';
-import ShortFormCarousel from './components/ShortFormCarousel';
+import SaasExplainer from './components/SaasExplainer';
 import LongForm from './components/LongForm';
 import Process from './components/Process';
 import Testimonials from './components/Testimonials';
@@ -24,8 +24,8 @@ const App: React.FC = () => {
                     <Showreel />
                 </ScrollReveal>
 
-                <ScrollReveal delay="0.1s">
-                    <ShortFormCarousel />
+                <ScrollReveal>
+                    <SaasExplainer />
                 </ScrollReveal>
 
                 <ScrollReveal>
