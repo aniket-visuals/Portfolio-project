@@ -55,7 +55,7 @@
     </script>
     <style>
         body {
-            background-color: #050505;
+            background-color: #030303;
             color: white;
             overflow-x: hidden;
         }
@@ -95,8 +95,101 @@
 
         .bg-grid {
             background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.005) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.005) 1px, transparent 1px);
+        }
+        
+        .bg-noise {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.04;
+            pointer-events: none;
+            mix-blend-mode: overlay;
+        }
+
+        /* --- PREMIUM ARCHITECTURAL GEOMETRY SYSTEM --- */
+        .arch-panel-base {
+            position: absolute;
+            overflow: hidden;
+            will-change: transform;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+        }
+        .arch-panel-dark {
+            background: linear-gradient(160deg, #0a0a0a 0%, #040404 100%);
+            border: 1px solid rgba(138, 79, 8, 0.2);
+        }
+        .arch-panel-amber {
+            background: linear-gradient(160deg, #1c1104 0%, #090502 100%);
+            border: 1px solid rgba(200, 121, 0, 0.25);
+        }
+        .arch-panel-gold {
+            background: linear-gradient(160deg, #301b06 0%, #100802 100%);
+            border: 1px solid rgba(245, 169, 0, 0.2);
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.6), inset 0 0 15px rgba(245, 169, 0, 0.08);
+        }
+        .arch-panel-glass {
+            background: rgba(25, 15, 4, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(200, 121, 0, 0.35);
+        }
+
+        .arch-edge-l { border-left: 1px solid rgba(245, 169, 0, 0.7); box-shadow: -6px 0 20px rgba(245, 169, 0, 0.25), inset 2px 0 10px rgba(245, 169, 0, 0.1); }
+        .arch-edge-r { border-right: 1px solid rgba(245, 169, 0, 0.7); box-shadow: 6px 0 20px rgba(245, 169, 0, 0.25), inset -2px 0 10px rgba(245, 169, 0, 0.1); }
+        .arch-edge-t { border-top: 1px solid rgba(245, 169, 0, 0.7); box-shadow: 0 -6px 20px rgba(245, 169, 0, 0.25), inset 0 2px 10px rgba(245, 169, 0, 0.1); }
+        .arch-edge-amber-l { border-left: 1px solid rgba(200, 121, 0, 0.6); box-shadow: -6px 0 20px rgba(200, 121, 0, 0.2), inset 2px 0 10px rgba(200, 121, 0, 0.08); }
+        .arch-edge-amber-r { border-right: 1px solid rgba(200, 121, 0, 0.6); box-shadow: 6px 0 20px rgba(200, 121, 0, 0.2), inset -2px 0 10px rgba(200, 121, 0, 0.08); }
+
+        .arch-divider-x {
+            position: absolute; left: 0; right: 0; height: 1px;
+            background: linear-gradient(to right, transparent, rgba(245, 169, 0, 0.4), transparent);
+            box-shadow: 0 0 10px rgba(245, 169, 0, 0.1);
+        }
+        .arch-divider-y {
+            position: absolute; top: 0; bottom: 0; width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(245, 169, 0, 0.4), transparent);
+            box-shadow: 0 0 10px rgba(245, 169, 0, 0.1);
+        }
+
+        .arch-subdivision {
+            position: absolute;
+            border: 1px solid rgba(200, 121, 0, 0.25);
+            background: rgba(90, 50, 10, 0.1);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+        }
+        
+        .arch-stripes-x {
+            position: absolute; inset: 0;
+            background-image: repeating-linear-gradient(to bottom, transparent, transparent 12px, rgba(200, 121, 0, 0.06) 12px, rgba(200, 121, 0, 0.06) 13px);
+        }
+
+        .arch-light-travel-y {
+            position: absolute; left: -1px; top: -100%; width: 2px; height: 100%;
+            background: linear-gradient(to bottom, transparent, #F5A900, #F5A900, transparent);
+            animation: arch-travel-y 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            box-shadow: 0 0 20px 3px rgba(245, 169, 0, 0.5), 0 0 8px 1px rgba(245, 169, 0, 0.6); z-index: 10;
+        }
+
+        @keyframes arch-travel-y {
+            0% { transform: translateY(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(250%); opacity: 0; }
+        }
+
+        @keyframes arch-float-1 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3vh); } }
+        @keyframes arch-float-2 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4vh); } }
+        @keyframes arch-float-3 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2vh); } }
+        @keyframes arch-float-4 { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(2vh) translateX(1vw); } }
+        @keyframes arch-float-5 { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-3vh) translateX(-1vw); } }
+
+        .bg-vignette-core {
+            background: radial-gradient(ellipse at center, #030303 0%, rgba(3, 3, 3, 0.7) 40%, rgba(3, 3, 3, 0.2) 70%, transparent 100%);
+        }
+
+        @media (prefers-reduced-motion) {
+            .arch-panel-base, .arch-light-travel-y {
+                animation: none !important;
+            }
         }
         
         .text-gradient {
@@ -210,6 +303,9 @@
   }
 }
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/index.css">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">

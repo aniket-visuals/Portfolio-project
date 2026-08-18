@@ -5,7 +5,7 @@ const Process: React.FC = () => {
         <section className="py-10 px-4 bg-black/50">
             <div className="max-w-3xl mx-auto text-center">
                 <span className="w-1 h-1 rounded-full bg-primary inline-block mb-2"></span>
-                <h2 className="text-2xl font-bold mb-10">The Process</h2>
+                <h2 className="text-2xl md:text-3xl font-bold mb-10 font-['Bricolage_Grotesque']">The Process</h2>
 
                 <div className="grid md:grid-cols-3 gap-6 relative">
                     <div className="hidden md:block absolute top-8 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>

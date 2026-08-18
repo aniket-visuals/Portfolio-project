@@ -179,7 +179,7 @@ const Testimonials: React.FC = () => {
             <div className="max-w-6xl mx-auto group">
                 <div className="text-center mb-12">
                     <span className="w-1 h-1 rounded-full bg-primary inline-block mb-2"></span>
-                    <h2 className="text-2xl font-bold">Client Love</h2>
+                    <h2 className="text-2xl md:text-3xl font-bold font-['Bricolage_Grotesque']">Client Love</h2>
                 </div>
 
                 <div className="relative">

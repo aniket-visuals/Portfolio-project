@@ -62,7 +62,7 @@ const ShortForm: React.FC = () => {
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-5">
                     <span className="w-1 h-1 rounded-full bg-primary inline-block mb-2"></span>
-                    <h3 className="text-xl font-bold">Short Form Content</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold font-['Bricolage_Grotesque']">Short Form Content</h3>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {VIDEOS.map((videoUrl, index) => (

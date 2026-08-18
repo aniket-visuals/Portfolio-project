@@ -20,8 +20,8 @@ const Showreel: React.FC = () => {
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-6">
                     <span className="w-1 h-1 rounded-full bg-primary inline-block mb-2"></span>
-                    <h2 className="text-xl font-bold mb-1">Showreel</h2>
-                    <p className="text-[10px] text-gray-400">A glimpse of my creative journey in motion.</p>
+                    <h2 className="text-2xl md:text-3xl font-bold mb-0 font-['Bricolage_Grotesque']">Showreel</h2>
+                    <p className="text-xs md:text-sm text-gray-400">A glimpse of my creative journey in motion.</p>
                 </div>
 
                 <div className="relative aspect-video glass-panel rounded-lg overflow-hidden mb-4 border border-white/10 group hover-trigger">
