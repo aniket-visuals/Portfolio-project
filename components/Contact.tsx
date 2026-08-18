@@ -32,7 +32,7 @@ const Contact: React.FC = () => {
                     </p>
                 </div>
                 
-                <div className="w-full h-[600px]">
+                <div className="w-full h-[850px] md:h-[800px] lg:h-[700px] max-w-full md:max-w-[720px] lg:max-w-[1200px] mx-auto overflow-hidden md:overflow-auto">
                     <Cal
                         namespace="15min"
                         calLink="editors-hub/15min"
