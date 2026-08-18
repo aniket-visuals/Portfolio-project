@@ -62,7 +62,8 @@ const Navigation: React.FC = () => {
                     {/* READY Button - Now Nested Inside the Glass Pill */}
                     <div className="hidden md:block">
                         <a 
-                            href="https://calendly.com/ankit121345123/30min?month=2025-12" 
+                            href="#contact"
+                            onClick={(e) => handleScroll(e, 'contact')}
                             className="h-8 px-4 rounded-full flex items-center justify-center text-[9px] font-bold tracking-widest hover-trigger btn-liquid-primary transition-transform hover:scale-105"
                         >
                             READY?
