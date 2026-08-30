@@ -39,7 +39,7 @@ const VideoCard: React.FC<{ item: VideoItem }> = ({ item }) => {
                 ) : (
                     <iframe 
                         className="w-full h-full absolute inset-0" 
-                        src={`https://www.youtube.com/embed/${item.videoId}?autoplay=1&rel=0&modestbranding=1`} 
+                        src={`https://www.youtube.com/embed/${item.videoId}?autoplay=1&rel=0&modestbranding=1&controls=0`} 
                         frameBorder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowFullScreen

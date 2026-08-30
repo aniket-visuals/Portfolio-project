@@ -1,5 +1,6 @@
 import React from 'react';
 import { Analytics } from '@vercel/analytics/react';
+import Loader from './components/Loader';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import Showreel from './components/Showreel';
@@ -16,7 +17,7 @@ import ScrollReveal from './components/ScrollReveal';
 const App: React.FC = () => {
     return (
         <div className="font-sans antialiased relative min-h-screen text-white bg-[#050505]">
-            <Navigation />
+            <Loader /><Navigation />
             
             <main>
                 <Hero />
