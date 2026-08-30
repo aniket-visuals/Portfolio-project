@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
+import { usePortfolioData, VideoItem } from '../hooks/usePortfolioData';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 
-interface VideoItem {
-    videoId: string;
-    title: string;
-    description: string;
-    projectUrl: string;
-}
+
 
 const VideoCard: React.FC<{ item: VideoItem }> = ({ item }) => {
     const [isPlaying, setIsPlaying] = useState(false);
@@ -57,32 +53,8 @@ const VideoCard: React.FC<{ item: VideoItem }> = ({ item }) => {
 };
 
 const LongForm: React.FC = () => {
-    const ITEMS = [
-        {
-            videoId: "VhxSYVyopy8",
-            title: "Business Style Content",
-            description: "Deep dive into tech history",
-            projectUrl: "#"
-        },
-        {
-            videoId: "BsHi-N_Gamw",
-            title: "Business Style Content",
-            description: "High retention storytelling",
-            projectUrl: "#"
-        },
-        {
-            videoId: "tZSaGhFoEXc",
-            title: "Business Style Content",
-            description: "Engaging and fast-paced editing",
-            projectUrl: "#"
-        },
-        {
-            videoId: "We9n4yZDdKA",
-            title: "Podcast Intro Edit",
-            description: "Clear and concise visual learning",
-            projectUrl: "#"
-        }
-    ];
+    const { data } = usePortfolioData();
+    const ITEMS = data.longform;
 
     return (
         <section className="py-10 px-4">

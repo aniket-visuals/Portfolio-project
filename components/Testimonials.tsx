@@ -1,18 +1,14 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { usePortfolioData, TestimonialItem } from '../hooks/usePortfolioData';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
-const TESTIMONIALS = [
-    { quote: "Honestly, it was a really great experience. I received every edit on time, and the editing skills he possesses are excellent.", author: "Smith Roy", role: "Agency Owner", image: "https://res.cloudinary.com/df5rgwdng/image/upload/v1774390466/cropped_circle_image_ef9hgz.png" },
-    { quote: "Loved the edit—so smooth and well-crafted! The attention to detail was amazing, and the quick turnaround made it even better. Great job!.", author: "Lars", role: "Youtube Entrepreneur", image: "https://res.cloudinary.com/df5rgwdng/image/upload/v1774393227/Ot4ZqEfYu9Zq4jV4JtSjGVRMtlQ_rc35l3.avif" },
-    { quote: "Incredible work! This is exactly what I was looking for. The quality is insane, and the fast delivery makes it even more impressive. Amazing job, mate!", author: "Carlo Smolders", role: "Youtuber & Creator", image: "https://res.cloudinary.com/df5rgwdng/image/upload/v1774393227/BzK24ZikXCqyabOzlDt8R9Q5rDA_rohyw4.webp" },
-    { quote: "The video was edited exceptionally well, with great attention to detail. I’m also impressed by the fast turnaround—fantastic work!", author: "Rayan", role: "Channel Manager", image: "https://res.cloudinary.com/df5rgwdng/image/upload/v1774393227/faggCnasOmNAlEJrLlZ3YysFNU_vfosyt.webp" },
-    { quote: "You really delivered on this one—super impressive work! The smooth animations and well-timed keyframes look fantastic.", author: "Yash", role: "Youtuber & Channel owner", image: "https://res.cloudinary.com/df5rgwdng/image/upload/v1774393227/EEtfmg54ZFMMO7x2dNCrqf88_psm2mi.webp" },
-    { quote: "Excellent work. He made the edits exactly as I expected and delivered everything on time. Really happy with the final result.", author: "Jordan Lee", role: "Content Creator", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face" }
-];
-
-const DISPLAY_ITEMS = [...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS];
 
 const Testimonials: React.FC = () => {
+    const [fullScreenImage, setFullScreenImage] = useState<string | null>(null);
+    const { data } = usePortfolioData();
+    const TESTIMONIALS = data.testimonials || [];
+    const DISPLAY_ITEMS = [...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS];
+
     const trackRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     
@@ -211,6 +207,14 @@ const Testimonials: React.FC = () => {
                                     <div>
                                         <div className="flex text-primary mb-3 text-[10px] tracking-widest">★★★★★</div>
                                         <p className="text-gray-200 italic mb-6 text-xs leading-relaxed font-light">"{t.quote}"</p>
+                                        {t.proofImage && (
+                                            <div 
+                                                className="mb-6 rounded-lg overflow-hidden border border-white/10 mt-[-10px] cursor-pointer hover:opacity-80 transition-opacity"
+                                                onClick={() => setFullScreenImage(t.proofImage!)}
+                                            >
+                                                <img src={t.proofImage} alt="Screenshot proof" className="w-full h-auto max-h-40 object-contain bg-black/40" referrerPolicy="no-referrer" />
+                                            </div>
+                                        )}
                                     </div>
                                     <div className="flex items-center gap-3 mt-auto border-t border-white/5 pt-4">
                                         {t.image ? (
@@ -231,7 +235,33 @@ const Testimonials: React.FC = () => {
                     </div>
                 </div>
             </div>
+        
+            {/* Full Screen Image Preview Modal */}
+            {fullScreenImage && (
+                <div 
+                    className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 md:p-10 backdrop-blur-sm"
+                    onClick={() => setFullScreenImage(null)}
+                >
+                    <button 
+                        className="absolute top-6 right-6 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full p-2 transition-colors z-10"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setFullScreenImage(null);
+                        }}
+                    >
+                        <X className="w-6 h-6" />
+                    </button>
+                    <img 
+                        src={fullScreenImage} 
+                        alt="Preview" 
+                        className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                        onClick={(e) => e.stopPropagation()}
+                        referrerPolicy="no-referrer"
+                    />
+                </div>
+            )}
         </section>
+
     );
 };
 

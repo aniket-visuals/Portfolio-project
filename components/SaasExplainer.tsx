@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
+import { usePortfolioData, VideoItem } from '../hooks/usePortfolioData';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 
-interface VideoItem {
-    videoId: string;
-    title: string;
-    description: string;
-    projectUrl: string;
-}
+
 
 const VideoCard: React.FC<{ item: VideoItem }> = ({ item }) => {
     const [isPlaying, setIsPlaying] = useState(false);
@@ -67,32 +63,8 @@ const VideoCard: React.FC<{ item: VideoItem }> = ({ item }) => {
 };
 
 const SaasExplainer: React.FC = () => {
-    const ITEMS = [
-        {
-            videoId: "XfL5m4GHs3Y",
-            title: "Cooveb Launch Video",
-            description: "AI-powered hotel discovery platform",
-            projectUrl: "https://www.behance.net/gallery/254802257/Cooveb-AI-Powered-Hotel-Discovery-SaaS-Launch-Video"
-        },
-        {
-            videoId: "nZ_tsvCeFfI",
-            title: "Saas recreation video",
-            description: "practice project",
-            projectUrl: "#"
-        },
-        {
-            videoId: "K6rswtPW66c",
-            title: "OmniTool launch video",
-            description: "After effects all in one tool",
-            projectUrl: "#"
-        },
-        {
-            videoId: "6AeKDHvQLrM",
-            title: "Google flow",
-            description: "practice project",
-            projectUrl: "#"
-        }
-    ];
+    const { data } = usePortfolioData();
+    const ITEMS = data.saas;
 
     return (
         <section id="saas-explainer" className="py-10 px-4">

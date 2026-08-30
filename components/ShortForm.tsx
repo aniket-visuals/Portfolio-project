@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { usePortfolioData } from '../hooks/usePortfolioData';
 import { Play } from 'lucide-react';
 
 const ShortVideoItem = ({ videoUrl, index }: { videoUrl: string, index: number }) => {
@@ -50,12 +51,8 @@ const ShortVideoItem = ({ videoUrl, index }: { videoUrl: string, index: number }
 };
 
 const ShortForm: React.FC = () => {
-    const VIDEOS = [
-        "https://res.cloudinary.com/df5rgwdng/video/upload/v1777380889/Day_10_v3_mzaoyp.mp4",
-        "https://res.cloudinary.com/df5rgwdng/video/upload/v1776639696/nov_1st_kdsol2.mov",
-        "https://res.cloudinary.com/df5rgwdng/video/upload/v1777373390/new_reel_complete_nndljp.mp4",
-        "https://res.cloudinary.com/df5rgwdng/video/upload/v1777372859/4k30fpsdd_z9kuho.mp4"
-    ];
+    const { data } = usePortfolioData();
+    const VIDEOS = data.shortform;
 
     return (
         <section id="short-form" className="py-10 px-4">
