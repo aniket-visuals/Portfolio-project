@@ -16,7 +16,7 @@ const Showreel: React.FC = () => {
     };
 
     return (
-        <section id="showreel" className="py-10 px-4 relative">
+        <section id="showreel" className="py-10 px-4 relative mt-16 md:mt-24">
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-6">
                     <span className="w-1 h-1 rounded-full bg-primary inline-block mb-2"></span>

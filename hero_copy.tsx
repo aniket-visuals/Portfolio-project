@@ -28,15 +28,8 @@ const Hero: React.FC = () => {
                     <div className="absolute w-[2px] h-[2px] bg-white rounded-full top-[30%] left-[5%] opacity-30"></div>
                 </div>
 
-                {/* 2.5 SHOOTING STARS */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-80 z-0">
-                    <div className="absolute top-[0%] left-[10%] h-[2px] bg-gradient-to-r from-transparent via-white to-transparent animate-shooting-star" style={{ animationDelay: '0s', boxShadow: '0 0 20px 2px rgba(255,255,255,0.8)' }}></div>
-                    <div className="absolute top-[20%] left-[-10%] h-[2px] bg-gradient-to-r from-transparent via-[#F5A900] to-transparent animate-shooting-star" style={{ animationDelay: '3s', boxShadow: '0 0 20px 2px rgba(245,169,0,0.8)' }}></div>
-                    <div className="absolute top-[5%] left-[30%] h-[2px] bg-gradient-to-r from-transparent via-white to-transparent animate-shooting-star" style={{ animationDelay: '6s', boxShadow: '0 0 20px 2px rgba(255,255,255,0.8)' }}></div>
-                </div>
-
                 {/* 3. DIMENSIONAL HORIZON ARC (LOWER-MIDDLE) */}
-                <div className="absolute left-1/2 top-[80%] md:top-[85%] w-[200vw] h-[200vw] md:w-[150vw] md:h-[150vw] -translate-x-1/2 rounded-[50%] border-t border-[#F5A900]/50 shadow-[0_-20px_80px_rgba(245,169,0,0.4)] bg-[#030303] overflow-hidden">
+                <div className="absolute left-1/2 top-[75%] w-[200vw] h-[200vw] md:w-[150vw] md:h-[150vw] -translate-x-1/2 rounded-[50%] border-t border-[#F5A900]/50 shadow-[0_-20px_80px_rgba(245,169,0,0.4)] bg-[#030303] overflow-hidden">
                     {/* Intense glow at the peak of the arc */}
                     <div className="absolute top-[-3px] left-1/2 -translate-x-1/2 w-[50%] md:w-[40%] h-[6px] bg-[#F5A900]/80 blur-[15px]"></div>
                     <div className="absolute top-[-1px] left-1/2 -translate-x-1/2 w-[30%] md:w-[20%] h-[3px] bg-[#FFC555] blur-[5px]"></div>
@@ -49,17 +42,17 @@ const Hero: React.FC = () => {
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(3,3,3,0.5)_100%)] pointer-events-none"></div>
 
                 {/* 6. BOTTOM ATMOSPHERIC FADE TO SHOWREEL */}
-                <div className="absolute bottom-0 left-0 right-0 h-[10vh] bg-gradient-to-b from-transparent to-[#030303] z-[60] pointer-events-none"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-[25vh] bg-gradient-to-b from-transparent via-[#030303]/80 to-[#030303] z-[60] pointer-events-none"></div>
             </div>
 
-            <div className="relative z-10 text-center px-4 w-full max-w-4xl mx-auto pb-16 -mt-8 md:-mt-16">
+            <div className="relative z-10 text-center px-4 w-full max-w-7xl mx-auto pb-16">
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 mb-10 backdrop-blur-sm opacity-0 animate-slide-up-elastic">
                     <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-blink shadow-[0_0_8px_2px_rgba(34,197,94,0.6)]"></span>
-                    <span className="text-[11px] font-bold tracking-widest text-gray-300 uppercase">Open to work</span>
+                    <span className="text-[10px] font-bold tracking-widest text-gray-300 uppercase">Open to work</span>
                 </div>
 
-                <h1 className="text-[26px] md:text-[46px] lg:text-[66px] font-bold tracking-[1px] mb-4 leading-tight opacity-0 animate-slide-up-elastic font-['Bricolage_Grotesque']" style={{ animationDelay: '0.1s' }}>
-                    <span className="relative inline-block -mt-[7px] -mb-[8px]">
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-[1px] mb-4 leading-none opacity-0 animate-slide-up-elastic font-['Bricolage_Grotesque']" style={{ animationDelay: '0.1s' }}>
+                    <span className="relative inline-block">
                         Make Your SaaS
                         <span className="absolute -right-[1.1em] top-0 text-primary animate-float">✦</span>
                     </span>
@@ -75,15 +68,14 @@ const Hero: React.FC = () => {
 
                 <div className="flex flex-row items-center justify-center gap-4 mb-12 opacity-0 animate-slide-up-elastic" style={{ animationDelay: '0.3s' }}>
                     <a 
-                        href="#contact" 
-                        onClick={(e) => handleScroll(e, 'contact')}
+                        href="https://calendly.com/ankit121345123/30min?month=2025-12" 
                         className="px-6 py-3 rounded-full text-sm font-bold w-auto hover-trigger btn-liquid-primary"
                     >
                         Book a Call
                     </a>
                     <a 
                         href="#showreel" 
-                        onClick={(e) => handleScroll(e, 'showreel')}
+                        onClick={(e) => handleScroll(e, 'contact')}
                         className="px-6 py-3 rounded-full text-sm font-bold w-auto hover-trigger btn-liquid-secondary"
                     >
                         See Portfolio
@@ -91,6 +83,21 @@ const Hero: React.FC = () => {
                 </div>
             </div>
             
+            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0 animate-pop-elastic z-20" style={{ animationDelay: '0.4s' }}>
+                <div className="flex -space-x-2">
+                    <img src="https://res.cloudinary.com/df5rgwdng/image/upload/v1774390101/high-1774389960_ehpvh9.jpg" className="w-8 h-8 rounded-full border border-dark" alt="Client" />
+                    <img src="https://res.cloudinary.com/df5rgwdng/image/upload/v1774390325/479499375_622414950386874_6207510539453852578_n_ru9tnj.jpg" className="w-8 h-8 rounded-full border border-dark" alt="Client" />
+                    <img src="https://res.cloudinary.com/df5rgwdng/image/upload/v1774393227/BzK24ZikXCqyabOzlDt8R9Q5rDA_rohyw4.webp" className="w-8 h-8 rounded-full border border-dark" alt="Client" />
+                </div>
+                <div className="flex items-center gap-1.5 text-xs text-gray-400">
+                    <div className="flex text-primary">
+                        {[...Array(5)].map((_, i) => (
+                            <Star key={i} className="w-3 h-3 fill-current" />
+                        ))}
+                    </div>
+                    <span>50+ Happy Customers</span>
+                </div>
+            </div>
         </section>
     );
 };

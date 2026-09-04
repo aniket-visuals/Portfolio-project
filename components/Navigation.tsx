@@ -1,90 +1,188 @@
-import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { LayoutGrid, MessageCircle, FileText, Menu, X } from 'lucide-react';
+import { motion } from 'motion/react';
 
 const Navigation: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const [activeSection, setActiveSection] = useState('showreel');
+    const isClickScrolling = useRef(false);
+    const scrollTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-    const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+            
+            if (isClickScrolling.current) return;
+            
+            // Scroll spy logic to update active section
+            const sections = ['showreel', 'testimonials', 'contact'];
+            let current = 'showreel';
+
+            for (const section of sections) {
+                const element = document.getElementById(section);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    // Check if section top is above middle of screen (plus some buffer)
+                    if (rect.top <= window.innerHeight / 2.5) {
+                        current = section;
+                    }
+                }
+            }
+            setActiveSection(current);
+        };
+        
+        // Call once on mount to set initial state
+        handleScroll();
+        
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const scrollTo = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
         e.preventDefault();
         setIsMenuOpen(false);
+        setActiveSection(targetId);
+        
+        isClickScrolling.current = true;
+        if (scrollTimeout.current) {
+            clearTimeout(scrollTimeout.current);
+        }
+        
+        // Re-enable scroll spy after the smooth scroll is likely finished
+        scrollTimeout.current = setTimeout(() => {
+            isClickScrolling.current = false;
+        }, 1000);
+        
         const element = document.getElementById(targetId);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
         }
     };
 
+    const navLinks = [
+        { id: 'showreel', label: 'Portfolio', icon: LayoutGrid },
+        { id: 'testimonials', label: 'Testimonials', icon: MessageCircle },
+        { id: 'contact', label: 'Project Request', icon: FileText }
+    ];
+
     return (
-        <nav className="fixed top-4 left-0 right-0 z-50 px-4 md:px-0">
-            {/* Split container for Logo Box and Nav Bar */}
-            <div className="w-full md:w-fit mx-auto flex items-center justify-between md:justify-center gap-3 opacity-0 animate-slide-down-elastic">
+        <nav className={`fixed top-8 left-0 right-0 z-50 flex justify-center pointer-events-none px-4 opacity-0 animate-[slideLeftRightBounce_1s_cubic-bezier(0.34,1.56,0.64,1)_forwards] ${scrolled ? 'backdrop-blur-none' : ''}`}>
+            
+            {/* --- DESKTOP NAVBAR --- */}
+            <div className="hidden md:flex relative items-center justify-center pointer-events-auto h-[56px]">
                 
-                {/* 1. Special Box for Logo */}
-                <div className="nav-liquid w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 transition-transform hover:scale-105 cursor-pointer hover-trigger z-50 overflow-hidden p-[3px]">
-                    <a href="#" className="block w-full h-full rounded-full overflow-hidden">
-                        {/* Replace the src below with your actual logo image URL */}
+                {/* LOGO CONTAINER (Overlapping, Separate Box) */}
+                <div className="absolute -left-7 z-20 flex items-center justify-center w-[54px] h-[54px] rounded-full bg-[#0a0a0a]/90 backdrop-blur-md border border-white/[0.12] shadow-[0_6px_24px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.15)] ring-1 ring-[#F5A900]/10 overflow-hidden group hover:scale-105 transition-transform duration-300">
+                     {/* Subtle gold glow behind logo */}
+                     <div className="absolute inset-0 rounded-full shadow-[inset_0_0_15px_rgba(245,169,0,0.1)] pointer-events-none"></div>
+                     <a href="#" onClick={(e) => scrollTo(e, 'root')} className="w-full h-full p-[2.5px] relative z-10">
                         <img 
                             src="https://res.cloudinary.com/df5rgwdng/image/upload/v1787059763/Logo_Dark_sfcl1j.png" 
                             alt="Logo" 
-                            className="w-full h-full object-cover" 
+                            className="w-full h-full object-cover rounded-full" 
                         />
                     </a>
                 </div>
 
-                {/* 2. Main Navigation Bar (Contains Links + Button) */}
-                <div className="nav-liquid w-14 md:w-auto md:flex-1 h-14 rounded-full p-0 md:py-1.5 md:pl-4 md:pr-3 flex items-center justify-center md:justify-start md:gap-5 relative z-50 transition-all duration-300">
+                {/* MAIN PILL */}
+                <div className={`pl-[38px] pr-1.5 h-[50px] flex items-center rounded-full bg-[#111111]/75 backdrop-blur-lg border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.1),0_-1px_10px_rgba(245,169,0,0.02)] transition-all duration-500`}>
                     
-                    {/* Desktop: Navigation Links */}
-                    <div className="hidden md:flex items-center space-x-5 text-[10px] uppercase tracking-wider font-semibold text-gray-300">
-                        <a href="#showreel" onClick={(e) => handleScroll(e, 'showreel')} className="hover:text-primary transition-colors hover-trigger">Portfolio</a>
-                        <a href="#testimonials" onClick={(e) => handleScroll(e, 'testimonials')} className="hover:text-primary transition-colors hover-trigger">Testimonials</a>
-                        <a href="#contact" onClick={(e) => handleScroll(e, 'contact')} className="hover:text-primary transition-colors hover-trigger">Project Request</a>
+                    {/* LINKS */}
+                    <div className="flex items-center gap-0.5 pr-2">
+                        {navLinks.map((link) => {
+                            const isActive = activeSection === link.id;
+                            const Icon = link.icon;
+                            
+                            return (
+                                <a 
+                                    key={link.id} 
+                                    href={`#${link.id}`} 
+                                    onClick={(e) => scrollTo(e, link.id)} 
+                                    className={`group relative flex items-center gap-2 px-3 h-[38px] rounded-full outline-none focus:outline-none focus:ring-0 transition-colors ${
+                                        !isActive ? 'hover:bg-white/[0.03]' : ''
+                                    }`}
+                                >
+                                    {isActive && (
+                                        <motion.div
+                                            layoutId="activeNavPill"
+                                            className="absolute inset-0 bg-[#222222]/80 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08),inset_0_0_8px_rgba(245,169,0,0.08)] border border-white/[0.04] rounded-full z-0 overflow-hidden"
+                                            initial={false}
+                                            transition={{
+                                                type: "spring",
+                                                bounce: 0.25,
+                                                duration: 0.5
+                                            }}
+                                        />
+                                    )}
+                                   <Icon className={`relative z-10 w-[16px] h-[16px] stroke-[1.5] transition-colors ${isActive ? 'text-[#F5A900]' : 'text-[#a0a0a0] group-hover:text-[#eaeaea]'}`} />
+                                   <span className={`relative z-10 text-[13.5px] font-medium tracking-wide transition-colors ${isActive ? 'text-white' : 'text-[#a0a0a0] group-hover:text-[#eaeaea]'}`}>
+                                       {link.label}
+                                   </span>
+                                </a>
+                            );
+                        })}
                     </div>
 
-                    {/* Mobile: Menu Button Only */}
-                    <div className="md:hidden flex items-center justify-center w-full h-full">
-                        <button 
-                            onClick={() => setIsMenuOpen(!isMenuOpen)} 
-                            className="text-white hover-trigger transition-transform active:scale-95 flex items-center justify-center w-full h-full"
-                            aria-label="Menu"
-                        >
-                            {isMenuOpen ? <X className="w-5 h-5" /> : (
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-200">
-                                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
-                                    <line x1="9" y1="3" x2="9" y2="21" />
-                                    <path d="M6 9h.01" />
-                                    <path d="M6 12h.01" />
-                                    <path d="M6 15h.01" />
-                                </svg>
-                            )}
-                        </button>
-                    </div>
+                    {/* SEPARATOR */}
+                    <div className="w-[1px] h-4 bg-white/10 mx-1.5"></div>
 
-                    {/* READY Button - Now Nested Inside the Glass Pill */}
-                    <div className="hidden md:block">
-                        <a 
-                            href="#contact"
-                            onClick={(e) => handleScroll(e, 'contact')}
-                            className="h-8 px-4 rounded-full flex items-center justify-center text-[9px] font-bold tracking-widest hover-trigger btn-liquid-primary transition-transform hover:scale-105"
-                        >
-                            READY?
-                        </a>
-                    </div>
+                    {/* CTA */}
+                    <a href="#contact" onClick={(e) => scrollTo(e, 'contact')} className="group relative flex items-center justify-center px-4 h-[38px] min-w-[86px] rounded-full bg-[#0a0702]/60 border border-[#F5A900]/40 shadow-[0_0_12px_rgba(245,169,0,0.1),inset_0_1px_0_rgba(255,255,255,0.1)] transition-all duration-300 hover:shadow-[0_0_20px_rgba(245,169,0,0.25),inset_0_1px_0_rgba(255,255,255,0.2)] hover:border-[#F5A900]/70 hover:bg-[#1a1205]/80 ml-1.5">
+                        <span className="text-[11px] font-bold tracking-[0.1em] text-[#F5A900] group-hover:text-[#FFD780] transition-colors relative z-10 pt-[1px]">READY?</span>
+                        <div className="absolute inset-0 rounded-full bg-[#F5A900]/0 group-hover:bg-[#F5A900]/10 transition-colors pointer-events-none"></div>
+                    </a>
+                </div>
+            </div>
+
+            {/* --- MOBILE NAVBAR --- */}
+            <div className="flex md:hidden relative items-center pointer-events-auto w-full justify-between">
+                <div className="z-20 flex items-center justify-center w-12 h-12 rounded-full bg-[#0a0a0a]/90 backdrop-blur-2xl border border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.1)] ring-1 ring-[#F5A900]/20 overflow-hidden">
+                     <a href="#" onClick={(e) => scrollTo(e, 'root')} className="w-full h-full p-[2px]">
+                        <img 
+                            src="https://res.cloudinary.com/df5rgwdng/image/upload/v1787059763/Logo_Dark_sfcl1j.png" 
+                            alt="Logo" 
+                            className="w-full h-full object-cover rounded-full" 
+                        />
+                    </a>
+                </div>
+                
+                <div className="flex items-center rounded-full bg-[#080808]/50 backdrop-blur-xl border border-white/5 shadow-[0_20px_40px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.05)] border-t-[#F5A900]/10 p-1.5">
+                    <button 
+                        onClick={() => setIsMenuOpen(!isMenuOpen)} 
+                        className="w-10 h-10 flex items-center justify-center rounded-full bg-white/[0.05] border border-white/5 text-[#eaeaea]"
+                    >
+                        {isMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+                    </button>
                 </div>
             </div>
 
             {/* Mobile Dropdown Menu */}
             {isMenuOpen && (
-                <div className="absolute top-20 right-4 w-60 nav-liquid rounded-[2rem] p-5 flex flex-col space-y-4 animate-slide-down-elastic z-40 bg-black/80 backdrop-blur-2xl">
-                    <div className="flex flex-col space-y-3 px-1 items-center text-center">
-                        <a href="#showreel" onClick={(e) => handleScroll(e, 'showreel')} className="text-base font-medium text-gray-200 hover:text-primary transition-colors tracking-wide">Portfolio</a>
-                        <a href="#testimonials" onClick={(e) => handleScroll(e, 'testimonials')} className="text-base font-medium text-gray-200 hover:text-primary transition-colors tracking-wide">Testimonials</a>
-                        <a href="#contact" onClick={(e) => handleScroll(e, 'contact')} className="text-base font-medium text-gray-200 hover:text-primary transition-colors tracking-wide">Project Request</a>
-                    </div>
-                    
-                    <div className="h-px bg-white/5 w-full"></div>
-                    
-                    <a href="#contact" onClick={(e) => handleScroll(e, 'contact')} className="w-full py-3 rounded-xl btn-liquid-primary font-bold text-center text-xs tracking-widest hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(252,182,50,0.15)]">
-                        Book a Call
+                <div className="absolute top-20 right-4 left-4 rounded-3xl p-5 flex flex-col space-y-2 animate-slide-down-elastic z-40 bg-[#080808]/90 backdrop-blur-2xl border border-white/10 shadow-2xl pointer-events-auto">
+                    {navLinks.map((link) => {
+                        const isActive = activeSection === link.id;
+                        const Icon = link.icon;
+                        return (
+                            <a 
+                                key={link.id} 
+                                href={`#${link.id}`} 
+                                onClick={(e) => scrollTo(e, link.id)} 
+                                className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors relative overflow-hidden ${
+                                    isActive 
+                                    ? 'bg-white/[0.04] border border-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]' 
+                                    : 'hover:bg-white/[0.04]'
+                                }`}
+                            >
+                                {isActive && <div className="absolute bottom-0 left-0 w-full h-[1px] bg-[#F5A900]/30"></div>}
+                                <Icon className={`w-4 h-4 ${isActive ? 'text-[#eaeaea]' : 'text-[#8a8a8a] hover:text-[#eaeaea]'}`} />
+                                <span className={`text-sm font-medium ${isActive ? 'text-[#eaeaea]' : 'text-[#8a8a8a] hover:text-[#eaeaea]'}`}>{link.label}</span>
+                            </a>
+                        );
+                    })}
+                    <div className="h-px bg-white/10 w-full my-2"></div>
+                    <a href="#contact" onClick={(e) => scrollTo(e, 'contact')} className="flex items-center justify-center px-4 py-3.5 rounded-xl bg-[#120d04]/60 border border-[#F5A900]/30 shadow-[0_0_15px_rgba(245,169,0,0.1)] transition-colors hover:bg-[#1a1205]">
+                        <span className="text-[11px] font-bold tracking-[0.15em] text-[#F5A900]">READY?</span>
                     </a>
                 </div>
             )}

@@ -16,7 +16,8 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollReveal from './components/ScrollReveal';
 
-import Admin from './components/Admin';
+import Admin from "./components/Admin";
+import Clients from "./components/Clients";
 
 const Portfolio = () => {
     return (
@@ -25,6 +26,7 @@ const Portfolio = () => {
             <Navigation />
             <main>
                 <Hero />
+                <Clients />
                 <ScrollReveal><Showreel /></ScrollReveal>
                 <ScrollReveal><SaasExplainer /></ScrollReveal>
                 <ScrollReveal><LongForm /></ScrollReveal>

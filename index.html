@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editors Hub</title>
-    <link rel="icon" type="image/png" href="https://www.freepik.com/free-photos-vectors/logo-png" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -26,6 +25,7 @@
                         'slide-down-elastic': 'slideDownElastic 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
                         'slide-up-elastic': 'slideUpElastic 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
                         'pop-elastic': 'popElastic 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+                        'shooting-star': 'shootingStar 10s linear infinite',
                     },
                     keyframes: {
                         blink: {
@@ -35,6 +35,12 @@
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
                             '50%': { transform: 'translateY(-20px)' },
+                        },
+                        shootingStar: {
+                            '0%': { transform: 'translateX(0) translateY(0) rotate(45deg)', opacity: '1', width: '0' },
+                            '10%': { opacity: '1', width: '150px' },
+                            '30%': { transform: 'translateX(80vw) translateY(80vw) rotate(45deg)', opacity: '0', width: '0' },
+                            '100%': { transform: 'translateX(80vw) translateY(80vw) rotate(45deg)', opacity: '0', width: '0' },
                         },
                         slideDownElastic: {
                             '0%': { opacity: '0', transform: 'translateY(-30px)' },
@@ -175,6 +181,18 @@
             90% { opacity: 1; }
             100% { transform: translateY(250%); opacity: 0; }
         }
+        @keyframes slideDownBounce {
+            0% { transform: translateY(-30px); opacity: 0; }
+            40% { transform: translateY(10px); opacity: 1; }
+            70% { transform: translateY(-5px); opacity: 1; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes slideLeftRightBounce {
+            0% { transform: translateX(30px) translateY(-10px); opacity: 0; }
+            40% { transform: translateX(-10px) translateY(5px); opacity: 1; }
+            70% { transform: translateX(5px) translateY(-2px); opacity: 1; }
+            100% { transform: translateX(0) translateY(0); opacity: 1; }
+        }
 
         @keyframes arch-float-1 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3vh); } }
         @keyframes arch-float-2 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4vh); } }
@@ -291,6 +309,10 @@
             border-color: rgba(252, 182, 50, 0.6);
             color: #fcb632;
             box-shadow: 0 0 25px rgba(252, 182, 50, 0.4);
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
     </style>
 <script type="importmap">
