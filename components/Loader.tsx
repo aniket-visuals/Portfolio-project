@@ -39,18 +39,17 @@ const Loader: React.FC = () => {
                 <div className="absolute w-24 h-24 rounded-full border-b-2 border-white/40 border-r-2 border-r-transparent animate-[spin_2s_linear_infinite_reverse]"></div>
 
                 {/* Logo wrapper */}
-                <div className="relative w-20 h-20 rounded-full overflow-hidden p-1 border border-white/10 glass-panel shadow-[0_0_30px_rgba(252,182,50,0.15)] z-10">
-                    <img 
-                        src="https://res.cloudinary.com/df5rgwdng/image/upload/v1787059763/Logo_Dark_sfcl1j.png" 
-                        alt="Loading..." 
-                        className="w-full h-full object-cover rounded-full"
-                    />
+                <div className="relative w-20 h-20 rounded-full flex items-center justify-center overflow-hidden border border-white/10 glass-panel shadow-[0_0_30px_rgba(252,182,50,0.15)] z-10">
+                    <div className="pyramid-loader">
+                      <div className="pyramid-loader-wrapper">
+                        <span className="side side1"></span>
+                        <span className="side side2"></span>
+                        <span className="side side3"></span>
+                        <span className="side side4"></span>
+                        <span className="shadow"></span>
+                      </div>  
+                    </div>
                 </div>
-            </div>
-            
-            {/* Loading text */}
-            <div className="mt-12 text-primary/80 text-[10px] font-bold tracking-[0.4em] uppercase animate-pulse">
-                Loading Experience
             </div>
         </div>
     );
